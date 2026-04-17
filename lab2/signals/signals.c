@@ -1,0 +1,124 @@
+#include <stdio.h>     /* standard I/O functions                         */
+#include <stdlib.h>    /* exit                                           */
+#include <string.h>    /* memset                                         */
+#include <unistd.h>    /* standard unix functions, like getpid()         */
+#include <signal.h>    /* signal name macros, and the signal() prototype */
+
+/* first, define the Ctrl-C counter, initialize it with zero. */
+int ctrl_c_count = 0;
+int got_response = 0;
+#define CTRL_C_THRESHOLD  5 
+
+/* the Ctrl-C signal handler */
+void catch_int(int sig_num)
+{
+  /* increase count, and check if threshold was reached */
+  ctrl_c_count++;
+  if (ctrl_c_count >= CTRL_C_THRESHOLD) {
+    char answer[30];
+
+    /* prompt the user to tell us if to really
+     * exit or not */
+    printf("\nReally exit? [Y/n]: ");
+    fflush(stdout);
+    // add alarm
+    alarm(3);
+    fgets(answer, sizeof(answer), stdin);
+    alarm(0);
+    if (answer[0] == 'n' || answer[0] == 'N') {
+      printf("\nContinuing\n");
+      fflush(stdout);
+      /* 
+       * Reset Ctrl-C counter
+       */
+      ctrl_c_count = 0;
+    }
+    else {
+      printf("\nExiting...\n");
+      fflush(stdout);
+      exit(0);
+    }
+  }
+}
+
+/* the Ctrl-Z signal handler */
+void catch_tstp(int sig_num)
+{
+  /* print the current Ctrl-C counter */
+  printf("\n\nSo far, '%d' Ctrl-C presses were counted\n\n", ctrl_c_count);
+  fflush(stdout);
+}
+
+/* STEP - 1 (20 points) */
+/* Implement alarm handler - following catch_int and catch_tstp signal handlers */
+/* If the user DOES NOT RESPOND before the alarm time elapses, the program should exit */
+/* If the user RESPONDEDS before the alarm time elapses, the alarm should be cancelled */
+//YOUR CODE
+
+// catch_alarm called when user already took 3 seconds to answer
+void catch_alarm(int sig_num) {
+  // print explicitly states User took to long to respond (3s)
+  printf("User took to long to respond, Exiting program ...");
+  // flush ensures user see's the print before program sucessfully closes
+  fflush(stdout);
+  // complete exit of program
+  exit(0);
+}
+
+int main(int argc, char* argv[])
+{
+  struct sigaction sa;
+  
+  /* STEP - 2 (10 points) */
+  /* clear the memory at sa - by filling up the memory location at sa with the value 0 till the size of sa, using the function memset */
+  /* type "man memset" on the terminal and take reference from it */
+  /* if the sa memory location is reset this way, then no garbage value can create undefined behavior with the signal handlers */
+  //YOUR CODE
+
+  // clearing memory location at sa with 0 until size of sa
+  memset(&sa, 0, sizeof(sa));
+
+  sigset_t mask_set;  /* used to set a signal masking set. */
+
+  /* STEP - 3 (10 points) */
+  /* setup mask_set - fill up the mask_set with all the signals to block*/
+  //YOUR CODE
+  
+  // fill mask_set with every possible signal
+  sigfillset(&mask_set);  
+
+  /* STEP - 4 (10 points) */
+  /* ensure in the mask_set that the alarm signal does not get blocked while in another signal handler */
+  //YOUR CODE
+  
+  // deleting SIGALRM so that it may not be blocked signal
+  sigdelset(&mask_set, SIGALRM);
+
+  /* STEP - 5 (20 points) */
+  /* set signal handlers for SIGINT, SIGTSTP and SIGALRM */
+  //YOUR CODE
+  sa.sa_mask = mask_set;  // block everything in mask_set while handler runs
+  sa.sa_flags = 0;
+
+  // SIGINT
+  sa.sa_handler = catch_int;
+  sigaction(SIGINT, &sa, NULL);
+
+  // SIGTSTP
+  sa.sa_handler = catch_tstp;
+  sigaction(SIGTSTP, &sa, NULL);
+
+  // SIGALRM
+  sa.sa_handler = catch_alarm;
+  sigaction(SIGALRM, &sa, NULL);
+
+  /* STEP - 6 (10 points) */
+  /* ensure that the program keeps running to receive the signals */
+  //YOUR CODE
+
+  while (1) {
+    pause();
+  }
+  return 0;
+}
+
