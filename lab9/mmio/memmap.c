@@ -97,7 +97,7 @@ int main (int argc, char *argv[])
    */
   dst = mmap(NULL, statbuf.st_size, PROT_READ | PROT_WRITE, MAP_SHARED, fdout, 0);
   if (dst == MAP_FAILED) {
-    perror("mmap error for output")
+    perror("mmap error for output");
     exit(errno);
   }
   /* 
