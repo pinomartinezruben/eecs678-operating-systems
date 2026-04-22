@@ -58,8 +58,8 @@ int main (int argc, char *argv[])
    * 1. find size of input file 
    */
   // fstat function takes in the input file descripter and the memory adress of the statbuf 
-  int is_sucessfull_fstat = fstat(fdin, &statbuf); // 0=sucess, -1 = fail
-  if (is_sucessfull_fstat == -1) {
+  int did_fstat_succeed = fstat(fdin, &statbuf); // 0=sucess, -1 = fail
+  if (did_fstat_succeed == -1) {
     sprintf(buf, "cant stat %s", argv[1]);
     perror(buf);
     exit(errno);
@@ -68,8 +68,8 @@ int main (int argc, char *argv[])
    * 2. go to the location corresponding to the last byte 
    */
   // lseek function takes in file descripter output to stretch "the file", we use the size found in step 1
-  off_t is_sucessfull_lseek = lseek(fdout, statbuf.st_size - 1, SEEK_SET);
-  if (is_sucessfull_lseek == -1) { //-1 = fail, 0 = sucess
+  off_t did_lseek_succeed = lseek(fdout, statbuf.st_size - 1, SEEK_SET);
+  if (did_lseek_succeed == -1) { //-1 = fail, 0 = sucess
     perror("lseek error");
     exit(errno);
   }
@@ -77,6 +77,12 @@ int main (int argc, char *argv[])
   /* 
    * 3. write a dummy byte at the last location 
    */
+  // fdout is the file given the dummy byte, "" is the single byte that is dummy, and 1 is the size of the byte
+  ssize_t did_write_succeed = write(fdout, "" , 1); //-1 = fail, >1 = did write, 0 is wrote nothing
+  if (did_write_succeed == -1) {
+    perror("write error");
+    exit(errno);
+  }
 
   /* 
    * 4. mmap the input file 
