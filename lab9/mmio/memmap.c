@@ -87,7 +87,11 @@ int main (int argc, char *argv[])
   /* 
    * 4. mmap the input file 
    */
-
+  src = mmap(NULL, statbuf.st_size, PROT_READ, MAP_SHARED, fdout, 0);
+  if (src == -1) {
+    perror("mmap error for input");
+    exit(errno);
+  }
   /* 
    * 5. mmap the output file 
    */
