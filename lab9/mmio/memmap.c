@@ -107,7 +107,7 @@ int main (int argc, char *argv[])
      * stores what is in the memory location pointed to by src into
      * the memory location pointed to by dest.
      */
-    *dst = *src;
+  memcpy(dst,src,statbuf.st_size);
 
   // cleanup for good practice =)
   munmap(src, statbuf.st_size);
