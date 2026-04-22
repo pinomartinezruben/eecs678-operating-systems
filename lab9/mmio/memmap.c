@@ -27,9 +27,9 @@ void err_sys (const char * mesg)
 
 int main (int argc, char *argv[])
 {
-  int fdin, fdout, i;
-  char *src, *dst, buf[256];
-  struct stat statbuf;
+  int fdin, fdout, i; //fd in, fd out, and i are integegers
+  char *src, *dst, buf[256]; //the memory address of src, dst is type char, so is buf but its aray of size 256
+  struct stat statbuf; //stat is a type now?
 
   src = dst = NULL;
 
@@ -57,7 +57,13 @@ int main (int argc, char *argv[])
   /* 
    * 1. find size of input file 
    */
-
+  // fstat function takes in the input file descripter and the memory adress of the statbuf 
+  int sucessfull_fstat = fstat(fdin, &statbuf); // 0=sucess, -1 = fail
+  if (sucessfull_fstat == -1) {
+    sprintf(buf, "cant stat %s", argv[1]);
+    perror(buf);
+    exit(errno);
+  }
   /* 
    * 2. go to the location corresponding to the last byte 
    */
