@@ -58,8 +58,8 @@ int main (int argc, char *argv[])
    * 1. find size of input file 
    */
   // fstat function takes in the input file descripter and the memory adress of the statbuf 
-  int sucessfull_fstat = fstat(fdin, &statbuf); // 0=sucess, -1 = fail
-  if (sucessfull_fstat == -1) {
+  int is_sucessfull_fstat = fstat(fdin, &statbuf); // 0=sucess, -1 = fail
+  if (is_sucessfull_fstat == -1) {
     sprintf(buf, "cant stat %s", argv[1]);
     perror(buf);
     exit(errno);
@@ -67,6 +67,12 @@ int main (int argc, char *argv[])
   /* 
    * 2. go to the location corresponding to the last byte 
    */
+  // lseek function takes in file descripter output to stretch "the file", we use the size found in step 1
+  off_t is_sucessfull_lseek = lseek(fdout, statbuf.st_size - 1, SEEK_SET);
+  if (is_sucessfull_lseek == -1) { //-1 = fail, 0 = sucess
+    perror("lseek error");
+    exit(errno);
+  }
 
   /* 
    * 3. write a dummy byte at the last location 
