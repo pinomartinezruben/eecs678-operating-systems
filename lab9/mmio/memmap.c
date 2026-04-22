@@ -87,15 +87,19 @@ int main (int argc, char *argv[])
   /* 
    * 4. mmap the input file 
    */
-  src = mmap(NULL, statbuf.st_size, PROT_READ, MAP_SHARED, fdout, 0);
-  if (src == -1) {
+  src = mmap(NULL, statbuf.st_size, PROT_READ, MAP_SHARED, fdin, 0);
+  if (src == MAP_FAILED) {
     perror("mmap error for input");
     exit(errno);
   }
   /* 
    * 5. mmap the output file 
    */
-
+  dst = mmap(NULL, statbuf.st_size, PROT_READ | PROT_WRITE, MAP_SHARED, fdout, 0);
+  if (dst == MAP_FAILED) {
+    perror("mmap error for output")
+    exit(errno);
+  }
   /* 
    * 6. copy the input file to the output file 
    */
