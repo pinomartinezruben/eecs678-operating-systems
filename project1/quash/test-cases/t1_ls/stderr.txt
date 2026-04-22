@@ -1,0 +1,28 @@
+==50772== Memcheck, a memory error detector
+==50772== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==50772== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==50772== Command: /home/pinom/eecs678lab/project1/quash/quash
+==50772== 
+==50772== 
+==50772== HEAP SUMMARY:
+==50772==     in use at exit: 564 bytes in 2 blocks
+==50772==   total heap usage: 12 allocs, 10 frees, 22,478 bytes allocated
+==50772== 
+==50772== 4 bytes in 1 blocks are definitely lost in loss record 1 of 2
+==50772==    at 0x48467EF: malloc (vg_replace_malloc.c:442)
+==50772==    by 0x491337E: strdup (strdup.c:42)
+==50772==    by 0x10A84D: get_command_string (quash.c:70)
+==50772==    by 0x10DD55: run_script (execute.c:489)
+==50772==    by 0x10A957: main (quash.c:121)
+==50772== 
+==50772== LEAK SUMMARY:
+==50772==    definitely lost: 4 bytes in 1 blocks
+==50772==    indirectly lost: 0 bytes in 0 blocks
+==50772==      possibly lost: 0 bytes in 0 blocks
+==50772==    still reachable: 560 bytes in 1 blocks
+==50772==         suppressed: 0 bytes in 0 blocks
+==50772== Reachable blocks (those to which a pointer was found) are not shown.
+==50772== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50772== 
+==50772== For lists of detected and suppressed errors, rerun with: -s
+==50772== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

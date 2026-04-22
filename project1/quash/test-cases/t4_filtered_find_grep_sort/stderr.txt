@@ -1,0 +1,28 @@
+==51807== Memcheck, a memory error detector
+==51807== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==51807== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==51807== Command: /home/pinom/eecs678lab/project1/quash/quash
+==51807== 
+==51807== 
+==51807== HEAP SUMMARY:
+==51807==     in use at exit: 692 bytes in 4 blocks
+==51807==   total heap usage: 31 allocs, 27 frees, 28,022 bytes allocated
+==51807== 
+==51807== 132 bytes in 3 blocks are definitely lost in loss record 1 of 2
+==51807==    at 0x48467EF: malloc (vg_replace_malloc.c:442)
+==51807==    by 0x491337E: strdup (strdup.c:42)
+==51807==    by 0x10A84D: get_command_string (quash.c:70)
+==51807==    by 0x10DD55: run_script (execute.c:489)
+==51807==    by 0x10A957: main (quash.c:121)
+==51807== 
+==51807== LEAK SUMMARY:
+==51807==    definitely lost: 132 bytes in 3 blocks
+==51807==    indirectly lost: 0 bytes in 0 blocks
+==51807==      possibly lost: 0 bytes in 0 blocks
+==51807==    still reachable: 560 bytes in 1 blocks
+==51807==         suppressed: 0 bytes in 0 blocks
+==51807== Reachable blocks (those to which a pointer was found) are not shown.
+==51807== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==51807== 
+==51807== For lists of detected and suppressed errors, rerun with: -s
+==51807== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

@@ -1,0 +1,51 @@
+==51066== Memcheck, a memory error detector
+==51066== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==51066== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==51066== Command: /home/pinom/eecs678lab/project1/quash/quash
+==51066== 
+==51073== 
+==51073== HEAP SUMMARY:
+==51073==     in use at exit: 600 bytes in 4 blocks
+==51073==   total heap usage: 13 allocs, 9 frees, 26,610 bytes allocated
+==51073== 
+==51073== 18 bytes in 1 blocks are definitely lost in loss record 3 of 4
+==51073==    at 0x48467EF: malloc (vg_replace_malloc.c:442)
+==51073==    by 0x491337E: strdup (strdup.c:42)
+==51073==    by 0x10A84D: get_command_string (quash.c:70)
+==51073==    by 0x10DD55: run_script (execute.c:489)
+==51073==    by 0x10A957: main (quash.c:121)
+==51073== 
+==51073== LEAK SUMMARY:
+==51073==    definitely lost: 18 bytes in 1 blocks
+==51073==    indirectly lost: 0 bytes in 0 blocks
+==51073==      possibly lost: 0 bytes in 0 blocks
+==51073==    still reachable: 582 bytes in 3 blocks
+==51073==         suppressed: 0 bytes in 0 blocks
+==51073== Reachable blocks (those to which a pointer was found) are not shown.
+==51073== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==51073== 
+==51073== For lists of detected and suppressed errors, rerun with: -s
+==51073== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==51066== 
+==51066== HEAP SUMMARY:
+==51066==     in use at exit: 578 bytes in 2 blocks
+==51066==   total heap usage: 13 allocs, 11 frees, 22,522 bytes allocated
+==51066== 
+==51066== 18 bytes in 1 blocks are definitely lost in loss record 1 of 2
+==51066==    at 0x48467EF: malloc (vg_replace_malloc.c:442)
+==51066==    by 0x491337E: strdup (strdup.c:42)
+==51066==    by 0x10A84D: get_command_string (quash.c:70)
+==51066==    by 0x10DD55: run_script (execute.c:489)
+==51066==    by 0x10A957: main (quash.c:121)
+==51066== 
+==51066== LEAK SUMMARY:
+==51066==    definitely lost: 18 bytes in 1 blocks
+==51066==    indirectly lost: 0 bytes in 0 blocks
+==51066==      possibly lost: 0 bytes in 0 blocks
+==51066==    still reachable: 560 bytes in 1 blocks
+==51066==         suppressed: 0 bytes in 0 blocks
+==51066== Reachable blocks (those to which a pointer was found) are not shown.
+==51066== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==51066== 
+==51066== For lists of detected and suppressed errors, rerun with: -s
+==51066== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

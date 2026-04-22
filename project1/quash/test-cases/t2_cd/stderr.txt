@@ -1,0 +1,97 @@
+==50943== Memcheck, a memory error detector
+==50943== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==50943== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==50943== Command: /home/pinom/eecs678lab/project1/quash/quash
+==50943== 
+==50944== 
+==50944== HEAP SUMMARY:
+==50944==     in use at exit: 708 bytes in 4 blocks
+==50944==   total heap usage: 12 allocs, 8 frees, 22,674 bytes allocated
+==50944== 
+==50944== 72 bytes in 1 blocks are definitely lost in loss record 3 of 4
+==50944==    at 0x48467EF: malloc (vg_replace_malloc.c:442)
+==50944==    by 0x491337E: strdup (strdup.c:42)
+==50944==    by 0x10A84D: get_command_string (quash.c:70)
+==50944==    by 0x10DD55: run_script (execute.c:489)
+==50944==    by 0x10A957: main (quash.c:121)
+==50944== 
+==50944== LEAK SUMMARY:
+==50944==    definitely lost: 72 bytes in 1 blocks
+==50944==    indirectly lost: 0 bytes in 0 blocks
+==50944==      possibly lost: 0 bytes in 0 blocks
+==50944==    still reachable: 636 bytes in 3 blocks
+==50944==         suppressed: 0 bytes in 0 blocks
+==50944== Reachable blocks (those to which a pointer was found) are not shown.
+==50944== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50944== 
+==50944== For lists of detected and suppressed errors, rerun with: -s
+==50944== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==50946== 
+==50946== HEAP SUMMARY:
+==50946==     in use at exit: 650 bytes in 6 blocks
+==50946==   total heap usage: 33 allocs, 27 frees, 37,924 bytes allocated
+==50946== 
+==50946== 81 bytes in 3 blocks are definitely lost in loss record 3 of 4
+==50946==    at 0x48467EF: malloc (vg_replace_malloc.c:442)
+==50946==    by 0x491337E: strdup (strdup.c:42)
+==50946==    by 0x10A84D: get_command_string (quash.c:70)
+==50946==    by 0x10DD55: run_script (execute.c:489)
+==50946==    by 0x10A957: main (quash.c:121)
+==50946== 
+==50946== LEAK SUMMARY:
+==50946==    definitely lost: 81 bytes in 3 blocks
+==50946==    indirectly lost: 0 bytes in 0 blocks
+==50946==      possibly lost: 0 bytes in 0 blocks
+==50946==    still reachable: 569 bytes in 3 blocks
+==50946==         suppressed: 0 bytes in 0 blocks
+==50946== Reachable blocks (those to which a pointer was found) are not shown.
+==50946== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50946== 
+==50946== For lists of detected and suppressed errors, rerun with: -s
+==50946== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==50947== 
+==50947== HEAP SUMMARY:
+==50947==     in use at exit: 793 bytes in 7 blocks
+==50947==   total heap usage: 39 allocs, 32 frees, 35,280 bytes allocated
+==50947== 
+==50947== 155 bytes in 4 blocks are definitely lost in loss record 3 of 4
+==50947==    at 0x48467EF: malloc (vg_replace_malloc.c:442)
+==50947==    by 0x491337E: strdup (strdup.c:42)
+==50947==    by 0x10A84D: get_command_string (quash.c:70)
+==50947==    by 0x10DD55: run_script (execute.c:489)
+==50947==    by 0x10A957: main (quash.c:121)
+==50947== 
+==50947== LEAK SUMMARY:
+==50947==    definitely lost: 155 bytes in 4 blocks
+==50947==    indirectly lost: 0 bytes in 0 blocks
+==50947==      possibly lost: 0 bytes in 0 blocks
+==50947==    still reachable: 638 bytes in 3 blocks
+==50947==         suppressed: 0 bytes in 0 blocks
+==50947== Reachable blocks (those to which a pointer was found) are not shown.
+==50947== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50947== 
+==50947== For lists of detected and suppressed errors, rerun with: -s
+==50947== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==50943== 
+==50943== HEAP SUMMARY:
+==50943==     in use at exit: 715 bytes in 5 blocks
+==50943==   total heap usage: 39 allocs, 34 frees, 31,192 bytes allocated
+==50943== 
+==50943== 155 bytes in 4 blocks are definitely lost in loss record 1 of 2
+==50943==    at 0x48467EF: malloc (vg_replace_malloc.c:442)
+==50943==    by 0x491337E: strdup (strdup.c:42)
+==50943==    by 0x10A84D: get_command_string (quash.c:70)
+==50943==    by 0x10DD55: run_script (execute.c:489)
+==50943==    by 0x10A957: main (quash.c:121)
+==50943== 
+==50943== LEAK SUMMARY:
+==50943==    definitely lost: 155 bytes in 4 blocks
+==50943==    indirectly lost: 0 bytes in 0 blocks
+==50943==      possibly lost: 0 bytes in 0 blocks
+==50943==    still reachable: 560 bytes in 1 blocks
+==50943==         suppressed: 0 bytes in 0 blocks
+==50943== Reachable blocks (those to which a pointer was found) are not shown.
+==50943== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50943== 
+==50943== For lists of detected and suppressed errors, rerun with: -s
+==50943== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
