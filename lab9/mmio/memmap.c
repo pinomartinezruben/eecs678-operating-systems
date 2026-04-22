@@ -100,6 +100,13 @@ int main (int argc, char *argv[])
      * the memory location pointed to by dest.
      */
     *dst = *src;
+
+  // cleanup for good practice =)
+  munmap(src, statbuf.st_size);
+  munmap(dst, statbuf.st_size);
+  close(fdin);
+  close(fdout);
+  return 0;
 } 
 
 
