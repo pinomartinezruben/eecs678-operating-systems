@@ -116,5 +116,3 @@ int main (int argc, char *argv[])
   close(fdout);
   return 0;
 } 
-
-
