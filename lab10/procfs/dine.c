@@ -227,16 +227,15 @@ int check_for_deadlock()
      * 1. Store the stat filename for this diner into a buffer. Use the sprintf
      * library call.
      */
-    
+
+    sprintf(filename, "/proc/self/task/%d/stat", diners[i].tid);
 
     /* 
      * 2. Use fopen to open the stat file as a file stream. Open it
      * with read only permissions.
      */
 
-
-
-
+    statf = fopen(filename, "r");
 
     /* 
      * 3. Seek over uninteresting fields. Use fscanf to perform the seek.  You
@@ -246,7 +245,9 @@ int check_for_deadlock()
 
 
 
-
+    for (j = 0; j < FIELDS_TO_IGNORE; j++) {
+        fscanf(statf, "%*s");
+    }
 
 
     
@@ -255,7 +256,7 @@ int check_for_deadlock()
      */ 
 
 
-
+    fscanf(statf, "%lu %lu", &new_user_time, &new_sys_time);
 
    
     /*
@@ -263,7 +264,18 @@ int check_for_deadlock()
      */
    
  
+    if (new_user_time != user_time[i] || new_sys_time != sys_time[i]) {
+    /* This philosopher made progress – no deadlock */
+    deadlock = 0;
+    }
 
+    /* Update progress arrays (delta since last check) */
+    user_progress[i] = new_user_time - user_time[i];
+    sys_progress[i]  = new_sys_time  - sys_time[i];
+
+    /* Update stored time values for next comparison */
+    user_time[i] = new_user_time;
+    sys_time[i]  = new_sys_time;
 
 
 
@@ -272,7 +284,7 @@ int check_for_deadlock()
     /*
      * 6. Close the stat file stream 
      */
-
+    fclose(statf);
   }
   
   return deadlock;
